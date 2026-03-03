@@ -17,12 +17,11 @@ a{text-decoration:none}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
 @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes processing{0%{width:0%}60%{width:75%}100%{width:100%}}
 .fade-up{animation:fadeUp .3s ease forwards}
-.spinning{animation:spin .8s linear infinite}
 .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#666;animation:blink 1.4s ease-in-out infinite}
 .tw-cursor{display:inline-block;width:2px;height:.9em;background:#fff;vertical-align:middle;flex-shrink:0;animation:cursorBlink .8s step-end infinite}
 .typebar-wrap{position:relative;border-radius:13px}
@@ -33,14 +32,11 @@ a{text-decoration:none}
 .chip-ex:hover{border-color:#555!important;background:#111!important;color:#ddd!important}
 .icon-btn:hover{color:#ccc!important}
 .reset-btn:hover{border-color:#555!important;color:#ccc!important}
-.reload-btn:hover{border-color:#555!important;color:#ccc!important}
 .fw-opt:hover{background:#1a1a1a!important}
 .send-active:hover{background:#e0e0e0!important}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
 .modal-bg.open{display:flex}
 .modal-box{background:#0e0e0e;border:1px solid #242424;border-radius:14px;padding:28px;width:100%;position:relative;max-height:85vh;overflow-y:auto}
-.mblock{border-radius:8px;padding:11px 14px;display:flex;gap:12px;align-items:flex-start}
-.mlabel{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:3px 7px;flex-shrink:0;margin-top:2px;white-space:nowrap}
 .star-btn{background:none;border:none;font-size:26px;line-height:1;padding:2px;transition:transform .1s;filter:brightness(.3);cursor:pointer}
 .star-btn.lit{filter:brightness(1);transform:scale(1.15)}
 .fb-tab{border-radius:7px;padding:5px 12px;font-size:11px;display:flex;align-items:center;gap:6px;border:1px solid #2a2a2a;background:transparent;color:#888;cursor:pointer;transition:all .15s}
@@ -48,11 +44,12 @@ a{text-decoration:none}
 @media(max-width:599px){.it-pills{display:none!important}.it-mob{display:block!important}}
 @media(min-width:600px){.it-pills{display:flex!important}.it-mob{display:none!important}}
 .it-mob{display:none;position:relative}
+.progress-bar{height:2px;background:linear-gradient(90deg,#60a5fa,#a78bfa,#34d399);border-radius:2px;animation:processing .85s ease forwards}
 </style>
 </head>
 <body>
 
-<!-- INFO MODAL -->
+<!-- ═══ INFO MODAL ═══ -->
 <div id="infoModal" class="modal-bg" onclick="if(event.target===this)closeModal('infoModal')">
  <div class="modal-box" style="max-width:460px">
   <button class="icon-btn" onclick="closeModal('infoModal')" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#666;padding:4px;display:flex;align-items:center;transition:color .15s">
@@ -61,31 +58,31 @@ a{text-decoration:none}
   <p style="font-size:15px;font-weight:700;margin-bottom:22px;letter-spacing:-.02em">How PHRAZO Works</p>
   <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
    <span style="flex-shrink:0;color:#60a5fa;width:22px;display:flex;padding-top:1px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Strategic Professional Reply</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">Clean, executive-level message ready to copy and send immediately.</p></div>
+   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Strategic Professional Reply</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">Your raw message is reframed into a clean, executive-level reply — instantly, offline, no API needed.</p></div>
   </div>
   <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
    <span style="flex-shrink:0;color:#a78bfa;width:22px;display:flex;padding-top:1px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Framework Techniques Used</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">The exact communication strategies applied — ABT, SCQA, Ownership Positioning, and more.</p></div>
+   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Framework Techniques Applied</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">ABT · SCQA · T.C.R.E.I. · Lead with Value · Executive Frame — automatically selected based on your context.</p></div>
   </div>
   <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
    <span style="flex-shrink:0;color:#facc15;width:22px;display:flex;padding-top:1px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Strategic Watch-Out</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">One downstream risk or follow-up consideration to stay ahead of.</p></div>
+   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Strategic Watch-Out</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">One downstream risk or follow-up consideration to keep you ahead of the conversation.</p></div>
   </div>
   <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
-   <span style="flex-shrink:0;color:#34d399;width:22px;display:flex;padding-top:1px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">Clarification Mode</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">If your message lacks context, PHRAZO asks one focused question before rewriting.</p></div>
+   <span style="flex-shrink:0;color:#34d399;width:22px;display:flex;padding-top:1px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+   <div><p style="font-weight:700;font-size:13px;margin-bottom:4px">100% Offline — Zero Data Sent</p><p style="font-size:12.5px;color:#aaa;line-height:1.6">No API, no server, no tracking. Your words are processed entirely in your browser and never leave your device.</p></div>
   </div>
   <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e1e1e">
-   <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><p style="font-size:10px;color:#888;letter-spacing:.07em;text-transform:uppercase;font-weight:600">Safeguards Active</p></div>
-   <p style="font-size:12px;color:#888;line-height:1.7">Clarification · Ethical Escalation · Cultural Sensitivity · Political Navigation · Retaliation Filter · Quality Control</p>
+   <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><p style="font-size:10px;color:#888;letter-spacing:.07em;text-transform:uppercase;font-weight:600">Rule Engine Active</p></div>
+   <p style="font-size:12px;color:#888;line-height:1.7">Word Substitution · Signal Detection · Framework Structuring · Register Matching · Political Neutralisation · Retaliation Filter</p>
   </div>
   <div style="margin-top:18px;padding-top:16px;border-top:1px solid #1e1e1e">
-   <p style="font-size:11.5px;color:#888;line-height:1.65"><span style="color:#bbb;font-weight:700">Disclaimer: </span>This guide is for informational purposes only. We are not responsible for any actions taken after using this platform or any discrepancies.</p>
+   <p style="font-size:11.5px;color:#888;line-height:1.65"><span style="color:#bbb;font-weight:700">Disclaimer: </span>This tool is for informational purposes only. We are not responsible for any actions taken after using this platform.</p>
   </div>
  </div>
 </div>
 
-<!-- FEEDBACK MODAL -->
+<!-- ═══ FEEDBACK MODAL ═══ -->
 <div id="fbModal" class="modal-bg" onclick="if(event.target===this)closeModal('fbModal')">
  <div class="modal-box" style="max-width:400px">
   <button class="icon-btn" onclick="closeModal('fbModal')" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#666;padding:4px;display:flex;align-items:center;transition:color .15s">
@@ -129,13 +126,15 @@ a{text-decoration:none}
  </div>
 </div>
 
-<!-- APP -->
+<!-- ═══ APP ═══ -->
 <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;height:100svh">
 
  <!-- HEADER -->
  <div style="padding:16px 24px;border-bottom:1px solid #141414;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
   <div style="display:flex;align-items:center;gap:10px">
-   <div style="width:29px;height:29px;border-radius:7px;overflow:hidden;flex-shrink:0;background:#fff"><img id="logoImg" alt="PHRAZO" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+   <div style="width:29px;height:29px;border-radius:7px;overflow:hidden;flex-shrink:0;background:#fff">
+    <img id="logoImg" alt="PHRAZO" style="width:100%;height:100%;object-fit:cover;display:block"/>
+   </div>
    <span style="font-size:15px;font-weight:800;letter-spacing:-.03em">PHRAZO</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
@@ -160,60 +159,105 @@ a{text-decoration:none}
      <span id="twIcon" style="display:flex;align-items:center;flex-shrink:0;margin-left:2px;transition:color .3s"></span>
     </p>
    </div>
-   <p style="color:#999;font-size:13px;line-height:1.65;max-width:420px;margin-bottom:20px">Experience frustration or confusion communicating at work? Type the raw message — emotional, reactive or simple. PHRAZO upgrades and transforms it into career-smart communication.</p>
+   <p style="color:#999;font-size:13px;line-height:1.65;max-width:420px;margin-bottom:20px">Experience frustration or confusion communicating at work? Type the raw message — emotional, reactive or simple. PHRAZO transforms it into career-smart communication, instantly, with zero internet needed.</p>
    <p style="color:#666;font-size:10px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px">Try an example</p>
    <div style="display:flex;flex-direction:column;gap:7px">
-    <button class="chip-ex" onclick="exampleSend()" style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:9px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;color:#999;font-size:12.5px;text-align:left;transition:all .18s">
+    <button class="chip-ex" onclick="exampleSend(0)" style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:9px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;color:#999;font-size:12.5px;text-align:left;transition:all .18s">
      <span style="line-height:1.5">My manager asked for a progress update but the other department still hasn&#39;t given approval. I&#39;m stuck.</span>
+     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-left:10px;opacity:.35"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="chip-ex" onclick="exampleSend(1)" style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:9px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;color:#999;font-size:12.5px;text-align:left;transition:all .18s">
+     <span style="line-height:1.5">I feel like my ideas keep getting shot down in meetings and nobody listens to me.</span>
+     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-left:10px;opacity:.35"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="chip-ex" onclick="exampleSend(2)" style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:9px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;color:#999;font-size:12.5px;text-align:left;transition:all .18s">
+     <span style="line-height:1.5">My colleague keeps taking credit for my work and it&#39;s really unfair.</span>
      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-left:10px;opacity:.35"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
    </div>
   </div>
   <div id="msgList"></div>
-  <div id="loadingEl" style="display:none;background:#090909;border:1px solid #181818;border-radius:2px 11px 11px 11px;padding:18px 22px;align-items:center;gap:8px">
-   <span style="color:#888;font-size:10px;letter-spacing:.1em">ANALYSING</span>
-   <span class="dot" style="animation-delay:0ms"></span>
-   <span class="dot" style="animation-delay:130ms"></span>
-   <span class="dot" style="animation-delay:260ms"></span>
+  <div id="loadingEl" style="display:none;background:#090909;border:1px solid #181818;border-radius:2px 11px 11px 11px;padding:18px 22px;flex-direction:column;gap:10px">
+   <div style="display:flex;align-items:center;gap:8px">
+    <span style="color:#888;font-size:10px;letter-spacing:.1em">PROCESSING</span>
+    <span class="dot" style="animation-delay:0ms"></span>
+    <span class="dot" style="animation-delay:130ms"></span>
+    <span class="dot" style="animation-delay:260ms"></span>
+   </div>
+   <div style="background:#1a1a1a;border-radius:2px;overflow:hidden;height:2px">
+    <div class="progress-bar" id="progressBar"></div>
+   </div>
   </div>
   <div id="btm"></div>
  </div>
 
- <!-- INPUT -->
+ <!-- INPUT BAR -->
  <div style="padding:0 24px 20px;flex-shrink:0">
   <div class="typebar-wrap">
    <div class="typebar-inner" style="position:relative">
-    <button id="sendBtn" onclick="doSend()" disabled style="position:absolute;top:10px;right:10px;background:#1e1e1e;border:1px solid #404040;border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:not-allowed;transition:all .2s;flex-shrink:0">
-     <svg id="sendIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(-35deg)"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    <button id="sendBtn" onclick="doSend()" disabled
+      style="position:absolute;top:10px;right:10px;background:#1e1e1e;border:1px solid #404040;
+             border-radius:8px;width:34px;height:34px;display:flex;align-items:center;
+             justify-content:center;cursor:not-allowed;transition:all .2s;flex-shrink:0">
+     <svg id="sendIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          style="transform:rotate(-35deg)">
+      <line x1="22" y1="2" x2="11" y2="13"/>
+      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+     </svg>
     </button>
-    <textarea id="msgIn" rows="1" placeholder="Type what you actually want to say&#8230;" oninput="onTyping(this)" onkeydown="onKey(event)" style="background:transparent;border:none;width:calc(100% - 48px);color:#e8e8e8;font-size:13.5px;line-height:1.65;min-height:22px;display:block"></textarea>
-    <div style="margin-top:24px"><span style="color:#666;font-size:10px;letter-spacing:.03em">Shift+Enter new line &middot; Enter to send</span></div>
+    <textarea id="msgIn" rows="1" placeholder="Type what you actually want to say&#8230;"
+      oninput="onTyping(this)" onkeydown="onKey(event)"
+      style="background:transparent;border:none;width:calc(100% - 48px);color:#e8e8e8;
+             font-size:13.5px;line-height:1.65;min-height:22px;display:block"></textarea>
+    <div style="margin-top:24px">
+     <span style="color:#666;font-size:10px;letter-spacing:.03em">Shift+Enter new line &middot; Enter to convert</span>
+    </div>
    </div>
   </div>
 
-  <!-- Controls -->
+  <!-- Controls row -->
   <div style="display:flex;align-items:flex-start;gap:10px;margin-top:12px">
 
    <!-- Interaction Types -->
    <div id="itWrap" style="flex:1">
     <p style="color:#888;font-size:10px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px;font-weight:500">Interaction Types</p>
-    <!-- desktop pills -->
+    <!-- Desktop pills -->
     <div class="it-pills" style="gap:5px;flex-wrap:wrap">
-     <button id="it-upward"    class="it-btn" onclick="setIT('upward')"    style="background:#fff;color:#000;border:1px solid #fff;border-radius:7px;padding:5px 11px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>Speaking Up</button>
-     <button id="it-peer"      class="it-btn" onclick="setIT('peer')"      style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Peer Level</button>
-     <button id="it-downward"  class="it-btn" onclick="setIT('downward')"  style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>Leading Down</button>
-     <button id="it-crossfunc" class="it-btn" onclick="setIT('crossfunc')" style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:all .15s"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>Cross-Functional</button>
+     <button id="it-upward" class="it-btn" onclick="setIT('upward')"
+       style="background:#fff;color:#000;border:1px solid #fff;border-radius:7px;padding:5px 11px;
+              font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;
+              white-space:nowrap;transition:all .15s">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>Speaking Up</button>
+     <button id="it-peer" class="it-btn" onclick="setIT('peer')"
+       style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;
+              font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;
+              white-space:nowrap;transition:all .15s">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Peer Level</button>
+     <button id="it-downward" class="it-btn" onclick="setIT('downward')"
+       style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;
+              font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;
+              white-space:nowrap;transition:all .15s">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>Leading Down</button>
+     <button id="it-crossfunc" class="it-btn" onclick="setIT('crossfunc')"
+       style="background:#0e0e0e;color:#aaa;border:1px solid #222;border-radius:7px;padding:5px 11px;
+              font-size:11px;font-weight:400;display:flex;align-items:center;gap:5px;
+              white-space:nowrap;transition:all .15s">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>Cross-Functional</button>
     </div>
-    <!-- mobile dropdown -->
+    <!-- Mobile dropdown -->
     <div class="it-mob">
-     <button onclick="toggleMobIT()" style="background:#0e0e0e;border:1px solid #242424;border-radius:7px;padding:5px 11px;color:#ccc;font-size:11px;display:flex;align-items:center;gap:7px;width:100%;justify-content:space-between;white-space:nowrap;cursor:pointer;transition:border-color .15s">
+     <button onclick="toggleMobIT()"
+       style="background:#0e0e0e;border:1px solid #242424;border-radius:7px;padding:5px 11px;color:#ccc;
+              font-size:11px;display:flex;align-items:center;gap:7px;width:100%;
+              justify-content:space-between;white-space:nowrap;cursor:pointer;transition:border-color .15s">
       <span id="mobITLabel" style="display:flex;align-items:center;gap:5px;font-weight:600"></span>
       <svg id="mobITChev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
      </button>
-     <div id="mobITMenu" style="display:none;position:absolute;background:#0e0e0e;border:1px solid #242424;border-radius:9px;overflow:hidden;z-index:50;box-shadow:0 -8px 24px rgba(0,0,0,.7);width:180px">
-      <button class="fw-opt" onclick="setIT('upward');closeMobIT()"    style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Speaking Up</span><span style="color:#666;font-size:10px">To manager / leadership</span></button>
-      <button class="fw-opt" onclick="setIT('peer');closeMobIT()"      style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Peer Level</span><span style="color:#666;font-size:10px">Colleague / cross-team</span></button>
-      <button class="fw-opt" onclick="setIT('downward');closeMobIT()"  style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Leading Down</span><span style="color:#666;font-size:10px">Direct report / junior</span></button>
+     <div id="mobITMenu" style="display:none;position:absolute;background:#0e0e0e;border:1px solid #242424;border-radius:9px;overflow:hidden;z-index:50;box-shadow:0 -8px 24px rgba(0,0,0,.7);width:200px">
+      <button class="fw-opt" onclick="setIT('upward');closeMobIT()" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Speaking Up</span><span style="color:#666;font-size:10px">To manager / leadership</span></button>
+      <button class="fw-opt" onclick="setIT('peer');closeMobIT()" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Peer Level</span><span style="color:#666;font-size:10px">Colleague / cross-team</span></button>
+      <button class="fw-opt" onclick="setIT('downward');closeMobIT()" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Leading Down</span><span style="color:#666;font-size:10px">Direct report / junior</span></button>
       <button class="fw-opt" onclick="setIT('crossfunc');closeMobIT()" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;text-align:left"><span style="color:#ccc;font-size:11px;font-weight:500">Cross-Functional</span><span style="color:#666;font-size:10px">Other dept / stakeholder</span></button>
      </div>
     </div>
@@ -222,16 +266,32 @@ a{text-decoration:none}
    <!-- Frameworks -->
    <div id="fwWrap" style="min-width:140px;max-width:170px;flex-shrink:0;position:relative">
     <p style="color:#888;font-size:10px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px;font-weight:500">Frameworks</p>
-    <button onclick="toggleFW()" style="background:#0e0e0e;border:1px solid #242424;border-radius:7px;padding:5px 11px;color:#ccc;font-size:11px;display:flex;align-items:center;gap:7px;white-space:nowrap;width:100%;justify-content:space-between;cursor:pointer;transition:border-color .15s">
+    <button onclick="toggleFW()"
+      style="background:#0e0e0e;border:1px solid #242424;border-radius:7px;padding:5px 11px;color:#ccc;
+             font-size:11px;display:flex;align-items:center;gap:7px;white-space:nowrap;width:100%;
+             justify-content:space-between;cursor:pointer;transition:border-color .15s">
      <span id="fwLabel" style="font-weight:600">Auto</span>
      <svg id="fwChev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div id="fwMenu" style="display:none;position:absolute;bottom:calc(100% + 6px);left:0;right:0;background:#0e0e0e;border:1px solid #242424;border-radius:9px;overflow:hidden;z-index:50;box-shadow:0 -8px 24px rgba(0,0,0,.7)">
-     <button id="fwo-auto"      class="fw-opt" onclick="setFW('auto','Auto')"             style="width:100%;background:#161616;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left"><div style="flex:1"><p style="color:#fff;font-size:11px;font-weight:700;margin:0">Auto</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Best framework chosen for your context</p></div><svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></button>
-     <button id="fwo-abt"       class="fw-opt" onclick="setFW('abt','ABT')"              style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left"><div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">ABT</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Facts &#x2192; Tension &#x2192; Recommendation</p></div><svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
-     <button id="fwo-scqa"      class="fw-opt" onclick="setFW('scqa','SCQA')"            style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left"><div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">SCQA</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">McKinsey-style internal logic structure</p></div><svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
-     <button id="fwo-leadvalue" class="fw-opt" onclick="setFW('leadvalue','Lead with Value')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left"><div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">Lead with Value</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Risk &middot; Cost &middot; Alignment &middot; Timing first</p></div><svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
-     <button id="fwo-exec"      class="fw-opt" onclick="setFW('exec','Executive Frame')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left"><div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">Executive Frame</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Forward movement, no complaints</p></div><svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-auto" class="fw-opt" onclick="setFW('auto','Auto')" style="width:100%;background:#161616;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#fff;font-size:11px;font-weight:700;margin:0">Auto</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Best framework chosen automatically</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-abt" class="fw-opt" onclick="setFW('abt','ABT')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">ABT</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">And &rarr; But &rarr; Therefore</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-scqa" class="fw-opt" onclick="setFW('scqa','SCQA')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">SCQA</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">McKinsey-style logic structure</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-tcrei" class="fw-opt" onclick="setFW('tcrei','T.C.R.E.I.')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">T.C.R.E.I.</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Topic &middot; Context &middot; Request &middot; Evidence &middot; Impact</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-leadvalue" class="fw-opt" onclick="setFW('leadvalue','Lead with Value')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">Lead with Value</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Recipient-first stakeholder framing</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
+     <button id="fwo-exec" class="fw-opt" onclick="setFW('exec','Executive Frame')" style="width:100%;background:transparent;border:none;padding:9px 12px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;text-align:left">
+      <div style="flex:1"><p style="color:#ccc;font-size:11px;font-weight:500;margin:0">Executive Frame</p><p style="color:#888;font-size:10px;margin:2px 0 0;line-height:1.4">Outcomes &amp; trade-offs only</p></div>
+      <svg class="fwck" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></button>
     </div>
    </div>
   </div>
@@ -243,275 +303,837 @@ a{text-decoration:none}
 </div>
 
 <script>
-// LOGO
 document.getElementById('logoImg').src = 'data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCASwBLADASIAAhEBAxEB/8QAHQABAAMAAgMBAAAAAAAAAAAAAAcICQUGAgMEAf/EAFQQAQABAwMBAwUKCgcGBAQHAAABAgMEBQYRBwgSIQkTMVFhFBUiOEFxdIGRsxYjMjNScpKhwcI0N0JidaKxJFNjk6PDQ3N2gjZUg7IXJUSUpNLw/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AKZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9k=';
+// ╔══════════════════════════════════════════════════════════════════════╗
+// ║  PHRAZO RULE-BASED ENGINE  —  100% offline, zero API calls          ║
+// ║  Frameworks: ABT · SCQA · T.C.R.E.I. · Lead with Value · Exec Frame ║
+// ╚══════════════════════════════════════════════════════════════════════╝
 
-// STATE
-let itType='upward', fw='auto', busy=false, history=[], msgs=[], reloadIdx=null, fbStars=0, fwOpen=false, mobITOpen=false;
+// ── STATE ─────────────────────────────────────────────────────────────
+let itType = 'upward', fw = 'auto', msgs = [], fbStars = 0,
+    fwOpen = false, mobITOpen = false;
 
-const IT={upward:{label:'Speaking Up',sub:'To manager / leadership'},peer:{label:'Peer Level',sub:'Colleague / cross-team'},downward:{label:'Leading Down',sub:'Direct report / junior'},crossfunc:{label:'Cross-Functional',sub:'Other dept / stakeholder'}};
-const FW={auto:{label:'Auto',full:'Let PHRAZO decide'},abt:{label:'ABT',full:'And\u2013But\u2013Therefore'},scqa:{label:'SCQA',full:'Situation\u2013Complication\u2013Question\u2013Answer'},leadvalue:{label:'Lead with Value',full:'Stakeholder-First Framing'},exec:{label:'Executive Frame',full:'Outcomes & Trade-offs'}};
+const IT = {
+  upward:   { label: 'Speaking Up',      sub: 'To manager / leadership' },
+  peer:     { label: 'Peer Level',        sub: 'Colleague / cross-team' },
+  downward: { label: 'Leading Down',      sub: 'Direct report / junior' },
+  crossfunc:{ label: 'Cross-Functional',  sub: 'Other dept / stakeholder' },
+};
+const FW_META = {
+  auto:      { label: 'Auto' },
+  abt:       { label: 'ABT' },
+  scqa:      { label: 'SCQA' },
+  tcrei:     { label: 'T.C.R.E.I.' },
+  leadvalue: { label: 'Lead with Value' },
+  exec:      { label: 'Executive Frame' },
+};
 
-// TYPEWRITER
-const HEADS=[
- {t:"Say it. We'll fix it.",     c:'#60a5fa',i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'},
- {t:"Think it. We'll frame it.", c:'#a78bfa',i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'},
- {t:"Feel it. We'll refine it.", c:'#34d399',i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M15 9h0"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg>'},
+const EXAMPLES = [
+  { text: "My manager asked for a progress update but the other department still hasn't given approval. I'm stuck.", it: 'upward' },
+  { text: "I feel like my ideas keep getting shot down in meetings and nobody listens to me.", it: 'peer' },
+  { text: "My colleague keeps taking credit for my work and it's really unfair.", it: 'peer' },
 ];
-let twIdx=0,twStr='',twPhase='type';
-const twEl=document.getElementById('twTxt'),twIconEl=document.getElementById('twIcon');
-function syncIcon(){const h=HEADS[twIdx];twIconEl.style.color=h.c;twIconEl.innerHTML=h.i;}
-syncIcon();
-function tick(){
- const full=HEADS[twIdx].t;
- if(twPhase==='type'){
-  if(twStr.length<full.length){twStr=full.slice(0,twStr.length+1);twEl.textContent=twStr;setTimeout(tick,60);}
-  else setTimeout(()=>{twPhase='hold';tick();},1800);
- } else if(twPhase==='hold'){
-  setTimeout(()=>{twPhase='del';tick();},400);
- } else {
-  if(twStr.length>0){twStr=twStr.slice(0,-1);twEl.textContent=twStr;setTimeout(tick,35);}
-  else{twIdx=(twIdx+1)%HEADS.length;twPhase='type';syncIcon();setTimeout(tick,60);}
- }
-}
-tick();
 
-// SYSTEM PROMPT
-function buildPrompt(it,framework){
- const itLbl=IT[it]?.label||'General';
- const fwLbl=framework==='auto'?'Auto \u2014 choose the most appropriate framework':(FW[framework]?.full||'Auto');
- let fwB='';
- if(framework==='abt') fwB=`\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nACTIVE FRAMEWORK: ABT (And\u2013But\u2013Therefore)\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nYou MUST write the Strategic Professional Reply using EXACTLY this structure.\nEach segment MUST begin with its marker label on a new line, followed by the content.\nDo NOT write in regular prose. Do NOT skip any marker. This is mandatory.\n\nRequired output format inside STRATEGIC_REPLY_START...STRATEGIC_REPLY_END:\n\n[AND] {Shared context, agreed facts, common ground \u2014 what both parties know to be true. 1\u20132 sentences.}\n[BUT] {The tension, problem, complication, or conflict that disrupts the AND. This is the most critical sentence \u2014 it creates urgency. 1\u20132 sentences.}\n[THEREFORE] {The clear resolution, recommendation, or specific next step. Must directly answer the BUT. 1\u20132 sentences.}\n\nReal workplace example (manager credit hijack situation):\n[AND] I've been leading the product analytics workstream for the past two months and delivered the Q3 insights report that was presented to leadership last Tuesday.\n[BUT] I noticed the attribution in the executive summary listed the work under the team lead's name without crediting my direct contribution, which affects my visibility for the upcoming review cycle.\n[THEREFORE] I'd like to discuss how we can ensure individual contributions are reflected accurately in future reports, and I'd welcome your guidance on the best way to handle this.\n\nNow apply the same structure to the user's message.`;
- else if(framework==='scqa') fwB=`\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nACTIVE FRAMEWORK: SCQA (Situation\u2013Complication\u2013Question\u2013Answer)\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nDeveloped by Barbara Minto (McKinsey, The Pyramid Principle).\nYou MUST write the Strategic Professional Reply using EXACTLY this structure.\nEach segment MUST begin with its marker label on a new line.\nDo NOT write in regular prose. Do NOT skip any marker. This is mandatory.\n\nRequired output format inside STRATEGIC_REPLY_START...STRATEGIC_REPLY_END:\n\n[S] {SITUATION: The current state. Shared, undisputed context everyone agrees on. 1\u20132 sentences max.}\n[C] {COMPLICATION: What has changed, gone wrong, or threatens the situation. Why action is needed NOW. 1\u20132 sentences.}\n[Q] {QUESTION: The question that naturally arises from the complication.}\n[A] {ANSWER: The clear recommendation or next step. Lead with the strongest point first.}\n\nReal workplace example:\n[S] Our team has been on track to deliver the Henderson project by the agreed deadline, and all internal milestones have been met on schedule.\n[C] However, we are currently awaiting sign-off from the compliance department, which has not responded despite two follow-up requests over the past week, putting the deadline at risk.\n[Q] How do we maintain timeline integrity while ensuring proper compliance review is completed?\n[A] I recommend we escalate the approval request through the department head today, and simultaneously prepare a contingency timeline that accounts for a 3-day extension if sign-off is delayed beyond Friday.\n\nNow apply the same structure to the user's message.`;
- else if(framework==='leadvalue') fwB=`\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nACTIVE FRAMEWORK: Lead with Value (Stakeholder-First Framing)\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nOrigin: Jeff Su\u2019s \u201Cmanage up\u201D communication principle.\nOpen with what matters most to the RECIPIENT \u2014 their risk, their timeline, their cost, their alignment goals \u2014 BEFORE stating your position or request.\nWrite in clean plain prose. No special markers needed.`;
- else if(framework==='exec') fwB=`\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nACTIVE FRAMEWORK: Executive Frame (Outcomes & Trade-offs)\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nOrigin: The Futur / Chris Do.\nWrite outcomes and trade-offs ONLY. Zero emotions. No "I feel", "I think", "I\u2019m concerned", "I\u2019m worried."\nEvery sentence must name a result, decision, or trade-off. Write in clean plain prose.`;
- else fwB=`\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nACTIVE FRAMEWORK: Auto (PHRAZO selects best fit)\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nChoose the most appropriate technique from: ABT, SCQA, Lead with Value, Executive Frame, Strategic Framing, Ownership Positioning, Audience-Centric Framing, Face-Saving Alignment, or Emotional Regulation.\nApply the chosen technique\u2019s structure. Write in clean plain prose unless ABT or SCQA is chosen \u2014 in which case use their required markers.`;
-
- return `You are PHRAZO \u2014 an elite workplace communication strategist. Your expertise draws from:\n\u2022 Vinh Giang \u2014 vocal presence, storytelling clarity, commanding attention through structure\n\u2022 Loe Whaley \u2014 assertive yet compassionate professional dialogue\n\u2022 Prakash Daniel \u2014 professional diplomacy and emotional intelligence in high-stakes communication\n\u2022 Jeff Su \u2014 manage up, audience-first framing, email strategy\n\u2022 The Futur / Chris Do \u2014 value-based positioning, outcome framing, executive clarity\n\nCORE MISSION: Transform raw, emotional, or reactive workplace messages into professional strategic communication that protects credibility and advances career growth. Ethical influence only.\n\nCURRENT SESSION:\n\u2022 Interaction Type: ${itLbl}\n\u2022 Framework: ${fwLbl}\n${fwB}\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nRULES & SAFEGUARDS\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\nCLARIFICATION RULE:\nInteraction Type (${itLbl}) and Framework are already known \u2014 never ask about them.\nONLY trigger CLARIFY when the message is purely emotional with ZERO actionable context (e.g. "I\u2019m so frustrated", "everything is a mess"). Do NOT trigger CLARIFY for blunt, reactive, or emotionally charged messages that still contain a clear situation, conflict, or request.\nWhen needed: respond ONLY with \u2014 CLARIFY: [one concise empathetic question about what is missing]\n\nETHICAL SAFEGUARD: If the scenario involves harassment, discrimination, or legal misconduct \u2014 do not rewrite casually. Recommend documenting (dates, quotes, witnesses) and escalating through HR or formal channels.\n\nCULTURAL SENSITIVITY: For high power-distance / face-saving cultures \u2014 soften direct language, add alignment language before recommendations, avoid anything that implies bypassing authority.\n\nPOLITICAL SCENARIOS (detect silently, never label):\n\u2022 Public undermining \u2192 graceful visibility framing\n\u2022 Credit hijack \u2192 documented ownership language\n\u2022 Blame transfer \u2192 fact-anchored accountability\n\u2022 Scope creep \u2192 boundary-setting tied to deliverables\n\u2022 Passive-aggression \u2192 collaborative neutrality\n\u2022 Micromanagement \u2192 proactive transparency\n\nRETALIATION FILTER: Strip retaliatory/manipulative intent silently. Reframe as career-safe. Never explain.\n\nQUALITY CHECK (before output):\n\u2713 Increases perceived leadership and credibility\n\u2713 Reduces ambiguity and emotional escalation\n\u2713 Protects user\u2019s positioning\n\u2713 Would be appropriate to send directly to the recipient\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nOUTPUT FORMAT \u2014 FOLLOW EXACTLY\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\nNo ** markdown, no bold, no asterisks anywhere in the output.\n\nSTRATEGIC_REPLY_START\n[Write the reply here. STRICT LIMITS: maximum 150 words, maximum 5 paragraphs. If ABT selected: use [AND] [BUT] [THEREFORE] markers, one per line. If SCQA selected: use [S] [C] [Q] [A] markers, one per line. Other frameworks: clean plain prose. Be concise \u2014 quality over length.]\nSTRATEGIC_REPLY_END\n\nFRAMEWORK_START\n[Comma-separated. Selected framework name MUST appear first and exactly. Example for ABT: "ABT, Ownership Positioning, Emotional Regulation"]\nFRAMEWORK_END\n\nWATCHOUT_START\n[1\u20132 sentences. One concrete downstream risk or follow-up consideration.]\nWATCHOUT_END\n\nABSOLUTE RULES:\n\u2014 No retaliation, guilt-tripping, manipulation, or passive-aggression ever\n\u2014 Never expose political labeling in output\n\u2014 Match register: formal for upward, direct for peers, considered for downward\n\u2014 If CLARIFY mode: respond ONLY with "CLARIFY: [question]" and nothing else`;
-}
-
-// PARSE
-function parseResp(txt){
- const rM=txt.match(/STRATEGIC_REPLY_START\s*([\s\S]*?)\s*STRATEGIC_REPLY_END/);
- const fM=txt.match(/FRAMEWORK_START\s*([\s\S]*?)\s*FRAMEWORK_END/);
- const wM=txt.match(/WATCHOUT_START\s*([\s\S]*?)\s*WATCHOUT_END/);
- const cM=txt.match(/^CLARIFY:\s*(.+)/m);
- if(cM) return{type:'clarify',q:cM[1].trim()};
- if(rM) return{type:'full',reply:rM[1].trim(),fw:fM?fM[1].trim():'',wo:wM?wM[1].trim():''};
- return{type:'raw',txt};
-}
-
-// HTML ESCAPE
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-// MARKER RENDERING
-const MARKERS=[
- {pats:['[AND]','AND:','And:'],     lbl:'AND',        col:'#60a5fa',bg:'rgba(96,165,250,.08)', bd:'rgba(96,165,250,.3)'},
- {pats:['[BUT]','BUT:','But:'],     lbl:'BUT',        col:'#f87171',bg:'rgba(248,113,113,.08)',bd:'rgba(248,113,113,.3)'},
- {pats:['[THEREFORE]','THEREFORE:','Therefore:'],lbl:'THEREFORE',col:'#34d399',bg:'rgba(52,211,153,.08)', bd:'rgba(52,211,153,.3)'},
- {pats:['[S]','Situation:'],        lbl:'SITUATION',  col:'#a78bfa',bg:'rgba(167,139,250,.08)',bd:'rgba(167,139,250,.3)'},
- {pats:['[C]','Complication:'],     lbl:'COMPLICATION',col:'#fb923c',bg:'rgba(251,146,60,.08)', bd:'rgba(251,146,60,.3)'},
- {pats:['[Q]','Question:'],         lbl:'QUESTION',   col:'#facc15',bg:'rgba(250,204,21,.08)', bd:'rgba(250,204,21,.3)'},
- {pats:['[A]','Answer:'],           lbl:'ANSWER',     col:'#4ade80',bg:'rgba(74,222,128,.08)', bd:'rgba(74,222,128,.3)'},
+// ══════════════════════════════════════════════════════════════════════
+//  WORD SUBSTITUTION DICTIONARY
+//  Each entry: [regex, replacement]
+//  Order matters — more specific patterns first
+// ══════════════════════════════════════════════════════════════════════
+const WORD_MAP = [
+  // ── Anger / frustration combos ──────────────────────────────────────
+  [/\b(I'?m|I am)\s+(absolutely|really|so|very)?\s*(furious|livid|fuming|seething)\b/gi,
+    'I want to flag a significant concern regarding this matter'],
+  [/\b(I'?m|I am|I'?ve been)\s+(really |so |very )?(angry|mad|pissed off|pissed)\b/gi,
+    'I have material concerns about how this has been handled'],
+  [/\b(I'?m|I am)\s+(really |so |very )?(frustrated|fed up|done with|over it)\b/gi,
+    'I am finding the current approach unsustainable'],
+  [/\b(I'?m|I am)\s+(really |so |very )?(upset|unhappy|not happy)\b/gi,
+    'I have reservations about the current direction'],
+  [/\b(I'?m|I am)\s+(really |so |very )?(annoyed|irritated|bothered)\b/gi,
+    'I want to raise a concern about how this has been managed'],
+  [/\bthis is (ridiculous|insane|crazy|absurd)\b/gi,
+    'this situation warrants urgent attention'],
+  [/\bthis is (so |very |really )?(unfair|unjust|wrong)\b/gi,
+    'this falls outside what was agreed and needs to be addressed'],
+  // ── Stuck / blocked ──────────────────────────────────────────────────
+  [/\bI'?m (stuck|blocked|spinning my wheels|going in circles)\b/gi,
+    'I am currently awaiting a dependency that is blocking forward progress'],
+  [/\b(can'?t|cannot) (move|proceed|progress|go) (forward|ahead)\b/gi,
+    'am unable to advance this workstream'],
+  // ── "I feel like" ────────────────────────────────────────────────────
+  [/\bI feel like (no\s?one|nobody) (listens?|cares?|pays attention)\b/gi,
+    'I would appreciate greater visibility for the perspectives I bring to team discussions'],
+  [/\bI feel like\b/gi, 'From my perspective,'],
+  [/\bI feel\b/gi,      'I have observed that'],
+  // ── Credit / recognition ─────────────────────────────────────────────
+  [/\bkeeps? taking credit for my (work|ideas?|contributions?)\b/gi,
+    'has been presenting my contributions without accurate attribution'],
+  [/\b(taking|took|stolen|stealing) (credit|my work|my ideas?)\b/gi,
+    'attributing contributions inaccurately'],
+  [/\bmy (work|ideas?|contributions?) (is|are|being) (stolen|taken|hijacked)\b/gi,
+    'my contributions have not been accurately attributed'],
+  // ── Blame ────────────────────────────────────────────────────────────
+  [/\b(blame|blaming|blames?) me\b/gi,
+    'directing accountability toward me without clear rationale'],
+  [/\bthrow(ing|s)? me under the bus\b/gi,
+    'redirecting accountability away from the actual source'],
+  // ── Ignored / dismissed ──────────────────────────────────────────────
+  [/\b(no\s?one|nobody) listens? to me\b/gi,
+    'my input has not received the consideration it warrants'],
+  [/\bmy ideas? (get|keep getting|are) (shot down|dismissed|ignored|rejected)\b/gi,
+    'my proposals have not gained traction in recent discussions'],
+  [/\b(being|get|gets?) (ignored|dismissed|overlooked)\b/gi,
+    'not receiving adequate consideration'],
+  // ── Micromanagement ──────────────────────────────────────────────────
+  [/\b(micro.?manag(e[sd]?|ing)|breathing down my neck|over my shoulder)\b/gi,
+    'operating at a level of oversight that limits the autonomy needed to deliver effectively'],
+  // ── Overload ─────────────────────────────────────────────────────────
+  [/\bpulled in (all|every) direction\b/gi,
+    'managing competing priorities across multiple workstreams simultaneously'],
+  [/\b(killing me|drive[s]? me (crazy|nuts|insane|mad))\b/gi,
+    'creating a significant capacity and quality risk'],
+  [/\boverloaded\b/gi,   'operating above sustainable capacity'],
+  [/\bburied\b/gi,       'managing an elevated workload'],
+  [/\bslammed\b/gi,      'currently at full capacity'],
+  [/\bswamped\b/gi,      'managing a high-priority workload'],
+  // ── Simple single-word swaps ─────────────────────────────────────────
+  [/\b(boss|my boss)\b/gi,   'my manager'],
+  [/\bco-?workers?\b/gi,     'colleagues'],
+  [/\bthat\s?sucks?\b/gi,    'that presents a significant challenge'],
+  [/\bsucks?\b/gi,           'presents a challenge'],
+  [/\bcrappy\b/gi,           'suboptimal'],
+  [/\blousy\b/gi,            'below the expected standard'],
+  [/\bterrible\b/gi,         'significantly below standard'],
+  [/\bawful\b/gi,            'well below the expected standard'],
+  [/\bhopeless\b/gi,         'in need of a strategic reset'],
+  [/\bstupid\b/gi,           'misaligned with our objectives'],
+  [/\bdumb\b/gi,             'ill-considered'],
+  [/\bidiotic?\b/gi,         'counterproductive'],
+  [/\bbroke[n]?\b/gi,        'not functioning as intended'],
+  [/\b(useless|pointless)\b/gi, 'not delivering measurable value'],
+  [/\bconfusing\b/gi,        'lacking sufficient clarity'],
+  [/\bchaotic?\b/gi,         'lacking clear process ownership'],
+  [/\ba mess\b/gi,           'in need of clearer structure and ownership'],
+  [/\bit'?s not fair\b/gi,   'this outcome is inconsistent with what was agreed'],
+  [/\bunfair\b/gi,           'inconsistent with the agreed terms'],
+  [/\bI can'?t deal with\b/gi, 'I need to address'],
+  [/\bI hate\b/gi,           'I have strong reservations about'],
+  [/\bI don'?t (like|want)\b/gi, 'I would prefer an alternative approach to'],
+  [/\bI want\b/gi,           'I would like to explore'],
+  [/\bI need\b/gi,           'it would be valuable to'],
+  [/\bI think\b/gi,          'my assessment is that'],
+  [/\bI believe\b/gi,        'based on my analysis,'],
+  [/\bI'?m pretty sure\b/gi, 'the evidence suggests'],
+  [/\bmaybe\b/gi,            'one consideration would be'],
+  [/\bkinda\b/gi,            'somewhat'],
+  [/\bsorta\b/gi,            'to some extent'],
+  [/\bgonna\b/gi,            'going to'],
+  [/\bwanna\b/gi,            'would like to'],
+  [/\bgotta\b/gi,            'need to'],
+  [/\bdunno\b/gi,            'am uncertain'],
+  [/\banyways?\b/gi,         'in any case'],
+  [/\bprobably\b/gi,         'it is likely that'],
+  [/\bhonestly\b/gi,         'to be direct about this'],
+  [/\bfrankly\b/gi,          'to be transparent'],
+  [/\bto be honest\b/gi,     'to be candid'],
+  [/\bbasically\b/gi,        'in summary'],
+  [/\b(like,?\s+)+/gi,       ' '],
+  [/\byou know\b/gi,         ''],
+  [/\bright\?/gi,            ''],
+  [/\bfired\b/gi,            'separated from the organisation'],
+  [/\bquitting?\b/gi,        'pursuing other opportunities'],
+  // ── Tidy up ─────────────────────────────────────────────────────────
+  [/\s{2,}/g, ' '],
+  [/^[,\s]+/, ''],
 ];
-function renderLines(txt){
- return txt.split('\n').filter(l=>l.trim()).map((line,j)=>{
-  const tr=line.trimStart();let m=null,content=line;
-  for(const cfg of MARKERS){for(const p of cfg.pats){if(tr.startsWith(p)){m=cfg;content=tr.slice(p.length).trim();if(content.startsWith(':'))content=content.slice(1).trim();break;}}if(m)break;}
-  if(m) return `<div class="mblock" style="background:${m.bg};border:1px solid ${m.bd};margin-top:${j===0?'0':'8px'}"><span class="mlabel" style="color:${m.col};background:${m.bg};border:1px solid ${m.bd};box-shadow:0 0 8px ${m.bd}">${m.lbl}</span><p style="color:#f0f0f0;font-size:13.5px;line-height:1.75;margin:0">${esc(content)}</p></div>`;
-  return `<p style="color:#f0f0f0;font-size:13.5px;line-height:1.8;margin:${j===0?'0':'8px 0 0'}">${esc(line)}</p>`;
- }).join('');
+
+function applyWordMap(text) {
+  let out = text;
+  for (const [pat, rep] of WORD_MAP) {
+    out = out.replace(pat, rep);
+  }
+  out = out.trim();
+  return out.charAt(0).toUpperCase() + out.slice(1);
 }
 
-// RENDER ASSISTANT BUBBLE
-function renderBubble(msg,idx){
- const{parsed}=msg;if(!parsed)return'';
- if(parsed.type==='clarify') return`<div style="background:#0a0a0a;border:1px solid #1e2a1e;border-radius:2px 11px 11px 11px;padding:18px 20px;width:100%"><div style="display:flex;align-items:center;gap:6px;margin-bottom:12px"><span style="font-size:11px">&#x1F50D;</span><span style="font-size:10px;color:#4a7a4a;letter-spacing:.1em;text-transform:uppercase">Quick Clarification</span></div><p style="color:#c8c8c8;font-size:13.5px;line-height:1.7;margin:0">${esc(parsed.q)}</p></div>`;
- if(parsed.type==='raw') return`<div style="background:#090909;border:1px solid #181818;border-radius:2px 11px 11px 11px;padding:18px 20px;width:100%"><p style="color:#999;font-size:13px;line-height:1.7;margin:0">${esc(parsed.txt)}</p></div>`;
+// ══════════════════════════════════════════════════════════════════════
+//  SIGNAL DETECTOR  — keyword → intent category
+// ══════════════════════════════════════════════════════════════════════
+function detectSignals(txt) {
+  const t = txt.toLowerCase();
+  return {
+    isBlocked:  /stuck|blocked|waiting|approval|sign.?off|depend|delay|bottleneck|haven'?t (given|received|provided)/.test(t),
+    isCredit:   /credit|attribution|my (work|idea|contribution)|taking credit|presented.*as (his|her|their)/.test(t),
+    isBlame:    /blame|fault|my problem|responsible for.*mistake|throw.*under/.test(t),
+    isIgnored:  /ignor|dismiss|shot down|no.?one listen|not listen|nobody listens/.test(t),
+    isConflict: /conflict|disagree|tension|pushback|resist|disagrees/.test(t),
+    isMicro:    /micro.?manage|check.?in every|breathing down|constant updates|hover/.test(t),
+    isOverload: /too much|overload|swamp|slam|bury|buried|at capacity|too many/.test(t),
+    isUpdate:   /update|status|progress report|report back/.test(t),
+    isFeedback: /feedback|review|evaluation|performance/.test(t),
+    isDeadline: /deadline|due|timeline|by (friday|monday|eod|end of|next week)/.test(t),
+    isMeeting:  /meeting|discussion|session|call|conversation/.test(t),
+    isConflictWithColleague: /(colleague|coworker|peer|team member).*(credit|blame|ignor|dismiss|unfair)/.test(t),
+  };
+}
 
- const tags=parsed.fw?parsed.fw.split(',').map(t=>t.trim()).filter(Boolean):[];
- const hasABT=tags.some(t=>t.includes('ABT'))||parsed.reply.includes('[AND]')||parsed.reply.includes('[BUT]');
- const hasSCQA=tags.some(t=>t.includes('SCQA'))||parsed.reply.includes('[S]')||parsed.reply.includes('Situation:');
- const spinning=reloadIdx===idx;
+// ══════════════════════════════════════════════════════════════════════
+//  PHRASE LIBRARY
+//  Career-smart sentences grouped by intent — used as supporting language
+// ══════════════════════════════════════════════════════════════════════
+const PHRASES = {
+  blocked: [
+    "I wanted to surface this dependency early so we can collectively determine the fastest path to unblock the workstream.",
+    "To maintain momentum, I am proactively identifying an alternative path while awaiting the outstanding approval.",
+    "I am bringing this to your attention now rather than at the deadline, so there is still time to course-correct.",
+  ],
+  credit: [
+    "I would like to ensure individual contributions are accurately reflected in how this work is attributed and presented.",
+    "For transparency and record integrity, I want to clarify the direct source of the work referenced.",
+    "I am raising this to protect the accuracy of the record and ensure recognition aligns with actual contributions.",
+  ],
+  blame: [
+    "I want to offer a fact-based account of the decisions and timeline so accountability can be assessed accurately.",
+    "I am happy to walk through the sequence of events to ensure we are working from a shared and accurate understanding.",
+    "My goal is a clear, evidence-based view of where responsibility sits — not to escalate, but to resolve fairly.",
+  ],
+  ignored: [
+    "I would welcome a dedicated opportunity to walk through this proposal so it can be evaluated on its merits.",
+    "I believe the idea has real value worth exploring — I am open to refining the framing to make it more compelling.",
+    "To ensure this perspective receives proper consideration, I would suggest scheduling a focused conversation around it.",
+  ],
+  conflict: [
+    "I want to approach this constructively and ensure we land on a shared position that both parties can move forward with.",
+    "Rather than continuing in a direction that creates friction, I propose we align on the decision criteria first.",
+    "My goal here is a mutually workable outcome — I am fully open to dialogue and committed to finding common ground.",
+  ],
+  micro: [
+    "I'd like to propose a structured check-in cadence that keeps you informed while allowing the space needed to execute.",
+    "I can provide a brief weekly progress update so you have full visibility without requiring real-time oversight.",
+    "I am committed to complete transparency on progress — and will flag any risks before they require your intervention.",
+  ],
+  overload: [
+    "To maintain delivery quality across all active items, I would appreciate guidance on how to sequence these priorities.",
+    "I want to be transparent about the current workload picture so we can make a deliberate prioritisation decision together.",
+    "I am flagging this now so we can make a deliberate trade-off rather than risk slippage across multiple fronts.",
+  ],
+  update: [
+    "I wanted to provide a timely status update and surface any risks early for your awareness.",
+    "Progress is tracking to plan — I have noted one dependency to flag that may affect the timeline if unresolved.",
+    "I am bringing this to your attention proactively so there are no surprises heading into the next milestone.",
+  ],
+  general: [
+    "I am raising this directly and professionally, with the aim of reaching a clear and constructive resolution.",
+    "My intention is to address this in a way that maintains alignment and protects the integrity of our working relationship.",
+    "I am flagging this in good faith and with a focus on moving forward productively for all involved.",
+  ],
+};
 
- const abtLeg=hasABT?`<div style="display:flex;gap:10px;margin-top:9px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:5px"><span style="color:#60a5fa;font-size:9px;font-weight:800;letter-spacing:.08em">AND</span><span style="color:#444;font-size:9px">Context</span></div><div style="display:flex;align-items:center;gap:5px"><span style="color:#f87171;font-size:9px;font-weight:800;letter-spacing:.08em">BUT</span><span style="color:#444;font-size:9px">Tension</span></div><div style="display:flex;align-items:center;gap:5px"><span style="color:#34d399;font-size:9px;font-weight:800;letter-spacing:.08em">THEREFORE</span><span style="color:#444;font-size:9px">Resolution</span></div><span style="color:#333;font-size:9px">&#xB7; ABT Framework (Randy Olson)</span></div>`:'';
- const scqaLeg=hasSCQA?`<div style="display:flex;gap:10px;margin-top:9px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:5px"><span style="color:#a78bfa;font-size:9px;font-weight:800;letter-spacing:.08em">S</span><span style="color:#444;font-size:9px">Situation</span></div><div style="display:flex;align-items:center;gap:5px"><span style="color:#fb923c;font-size:9px;font-weight:800;letter-spacing:.08em">C</span><span style="color:#444;font-size:9px">Complication</span></div><div style="display:flex;align-items:center;gap:5px"><span style="color:#facc15;font-size:9px;font-weight:800;letter-spacing:.08em">Q</span><span style="color:#444;font-size:9px">Question</span></div><div style="display:flex;align-items:center;gap:5px"><span style="color:#4ade80;font-size:9px;font-weight:800;letter-spacing:.08em">A</span><span style="color:#444;font-size:9px">Answer</span></div><span style="color:#333;font-size:9px">&#xB7; SCQA (Barbara Minto)</span></div>`:'';
- const tagsHtml=tags.length?`<div style="margin-bottom:18px"><p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:9px">&#x2699; Framework Technique${tags.length>1?'s':''} Used</p><div style="display:flex;gap:6px;flex-wrap:wrap">${tags.map(t=>`<span style="background:#111;border:1px solid #242424;border-radius:5px;padding:3px 9px;color:#ccc;font-size:11px">${esc(t)}</span>`).join('')}</div></div>`:'';
- const woHtml=parsed.wo?`<div><p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:8px">&#x26A1; Strategic Watch-Out</p><p style="color:#aaa;font-size:12.5px;line-height:1.65;margin:0">${esc(parsed.wo)}</p></div>`:'';
+// ══════════════════════════════════════════════════════════════════════
+//  WATCHOUT LIBRARY  — downstream risk per intent
+// ══════════════════════════════════════════════════════════════════════
+const WATCHOUTS = {
+  blocked:  "Raising a blocker without proposing a solution can appear reactive. Where possible, lead with one alternative path to signal ownership and initiative.",
+  credit:   "Attribution conversations carry reputational weight on both sides. Ensure you can substantiate your contribution with specific deliverables, dates, or documented artefacts before raising formally.",
+  blame:    "Accountability discussions escalate quickly if framed as accusatory. Anchor every statement in observable facts and timeline rather than intent or character.",
+  ignored:  "Pushing an idea repeatedly without adapting the framing signals inflexibility. Consider reframing the proposal around the business outcome rather than the idea itself.",
+  conflict: "Conflict raised in writing creates a permanent record. Consider whether a brief verbal conversation would resolve the matter faster and with less lasting risk to the relationship.",
+  micro:    "Addressing oversight patterns directly requires high trust. Frame the request around enabling better delivery outcomes, not around reclaiming autonomy.",
+  overload: "Raising capacity concerns without a prioritisation suggestion can be read as avoidance. Come prepared with a recommended trade-off to demonstrate strategic thinking.",
+  update:   "A status update is also a visibility opportunity. Ensure the framing reflects your agency and leadership — not just task completion.",
+  general:  "Review the tone once before sending. When the relationship context is uncertain, favour language that opens dialogue rather than closes it.",
+};
 
- return`<div style="background:#090909;border:1px solid #181818;border-radius:2px 11px 11px 11px;padding:20px 22px;width:100%">
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
- <div style="display:flex;align-items:center;gap:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span style="font-size:10px;color:#666;letter-spacing:.12em;text-transform:uppercase">PHRAZO Reframe</span></div>
- <button class="reload-btn" onclick="doReload(${idx})" ${spinning?'disabled':''} style="background:transparent;border:1px solid #383838;border-radius:6px;padding:4px 9px;display:flex;align-items:center;gap:5px;cursor:${spinning?'not-allowed':'pointer'};color:#bbb;font-size:10px;font-family:Syne,sans-serif;transition:all .15s;opacity:${spinning?.4:1}">
-  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${spinning?'class="spinning"':''}><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>${spinning?'Generating&#8230;':'Retry'}
- </button>
-</div>
-<div style="margin-bottom:20px">
- <p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:10px">&#x2709; Strategic Professional Reply</p>
- <div style="background:#0d0d0d;border:1px solid #242424;border-left:2px solid #fff;border-radius:0 8px 8px 0;padding:14px 16px">${renderLines(parsed.reply)}</div>
- ${abtLeg}${scqaLeg}
-</div>
-${tagsHtml}${woHtml}
+// ══════════════════════════════════════════════════════════════════════
+//  FRAMEWORK BUILDERS
+// ══════════════════════════════════════════════════════════════════════
+
+// ── ABT: And–But–Therefore (Randy Olson) ────────────────────────────
+function buildABT(raw, sig, it) {
+  const prof = applyWordMap(raw);
+  let and_, but_, therefore_;
+
+  if (sig.isBlocked) {
+    and_ = "We have been progressing steadily toward the agreed milestone, with all internal tasks completed on schedule.";
+    but_ = "We are currently awaiting a critical external dependency — specifically, an outstanding approval — which is creating a bottleneck that places the timeline at risk.";
+    therefore_ = "I recommend we escalate the approval request today and, in parallel, prepare a contingency path so that delivery is not held hostage to a single dependency.";
+  } else if (sig.isCredit) {
+    and_ = "I have been leading and delivering this body of work as part of my direct responsibilities over the recent period.";
+    but_ = "The contribution has not been accurately attributed in how the work has been presented, which affects both the formal record and my professional visibility with stakeholders.";
+    therefore_ = "I would like to discuss how we ensure individual contributions are accurately reflected going forward, and I welcome your guidance on the appropriate process for doing so.";
+  } else if (sig.isIgnored) {
+    and_ = "I have raised this proposal in previous team discussions with the intent of improving our current approach.";
+    but_ = "The idea has not yet received substantive consideration, which means a potential improvement opportunity remains unexplored.";
+    therefore_ = "I would appreciate a dedicated time to walk through the proposal in more detail so it can be properly evaluated against our current objectives.";
+  } else if (sig.isBlame) {
+    and_ = "I have operated within the agreed parameters and fulfilled my responsibilities as defined throughout this project.";
+    but_ = "I am concerned that accountability is being directed toward me in a way that does not reflect a full and accurate view of the events and decisions involved.";
+    therefore_ = "I would welcome an opportunity to walk through the timeline and evidence together to ensure we reach a fact-based and fair resolution.";
+  } else if (sig.isConflict) {
+    and_ = "We share a common goal and both have a stake in reaching a productive outcome on this.";
+    but_ = `${prof} — and this tension, if left unaddressed, risks affecting both team cohesion and delivery.`;
+    therefore_ = "I propose we create space for a focused conversation to align on the key decision criteria and agree a path forward that both parties can commit to.";
+  } else {
+    and_ = "We have been operating within the agreed parameters and I want to ensure we maintain that alignment going forward.";
+    but_ = `${prof}.`;
+    therefore_ = "I would welcome a conversation to align on next steps and ensure we reach a constructive and workable resolution.";
+  }
+
+  return {
+    type: 'structured',
+    parts: [
+      { label:'AND',       color:'#60a5fa', bg:'rgba(96,165,250,.09)',  bd:'rgba(96,165,250,.35)',  text: and_ },
+      { label:'BUT',       color:'#f87171', bg:'rgba(248,113,113,.09)', bd:'rgba(248,113,113,.35)', text: but_ },
+      { label:'THEREFORE', color:'#34d399', bg:'rgba(52,211,153,.09)',  bd:'rgba(52,211,153,.35)',  text: therefore_ },
+    ],
+    frameworkTags: ['ABT (And–But–Therefore)', 'Narrative Tension', 'Ownership Positioning'],
+    legend: [
+      { label:'AND',       color:'#60a5fa', desc:'Context' },
+      { label:'BUT',       color:'#f87171', desc:'Tension' },
+      { label:'THEREFORE', color:'#34d399', desc:'Resolution' },
+    ],
+    legendNote: '· ABT Framework (Randy Olson)',
+    appliedFW: 'abt',
+  };
+}
+
+// ── SCQA: Situation–Complication–Question–Answer (Barbara Minto) ─────
+function buildSCQA(raw, sig, it) {
+  const prof = applyWordMap(raw);
+  let S, C, Q, A;
+
+  if (sig.isBlocked) {
+    S = "Our team has been tracking against the agreed project timeline, with all internal milestones met on schedule.";
+    C = "We are currently awaiting sign-off from an external team which has not responded despite two follow-up requests, placing the delivery date at risk.";
+    Q = "How do we maintain timeline integrity while ensuring the required approval process is properly and promptly completed?";
+    A = "I recommend escalating the approval request to the department head today and simultaneously preparing a contingency timeline that accounts for a delay of up to three business days.";
+  } else if (sig.isCredit) {
+    S = "I have been the primary contributor to the deliverable currently being presented to stakeholders.";
+    C = "The attribution in the summary does not accurately reflect this, which affects my professional record and visibility with leadership during a critical review period.";
+    Q = "How do we ensure contributions are attributed accurately in a way that is both transparent and fair?";
+    A = "I propose we revisit the attribution on this piece and agree on a clear, consistent process for recording individual contributions across all future deliverables.";
+  } else if (sig.isUpdate) {
+    S = "The project has been progressing against the plan agreed at the last checkpoint, and I wanted to provide a current view of where things stand.";
+    C = `${prof} — this has introduced a variable that I want to flag before it affects the next milestone.`;
+    Q = "What is the best way to address this so we stay on track and maintain stakeholder confidence?";
+    A = "I recommend a brief alignment conversation this week to agree on the right response and ensure all parties are working from the same updated picture.";
+  } else {
+    S = "We are operating within a well-defined context where expected outcomes and working agreements are established.";
+    C = `${prof}.`;
+    Q = "How do we address this constructively while maintaining alignment and preserving the integrity of the working relationship?";
+    A = "I recommend opening a direct, structured conversation to surface the key issues, align on expectations, and agree on the clearest path to resolution.";
+  }
+
+  return {
+    type: 'structured',
+    parts: [
+      { label:'S', color:'#a78bfa', bg:'rgba(167,139,250,.09)', bd:'rgba(167,139,250,.35)', text: S },
+      { label:'C', color:'#fb923c', bg:'rgba(251,146,60,.09)',  bd:'rgba(251,146,60,.35)',  text: C },
+      { label:'Q', color:'#facc15', bg:'rgba(250,204,21,.09)',  bd:'rgba(250,204,21,.35)',  text: Q },
+      { label:'A', color:'#4ade80', bg:'rgba(74,222,128,.09)',  bd:'rgba(74,222,128,.35)',  text: A },
+    ],
+    frameworkTags: ['SCQA (Minto Pyramid)', 'McKinsey Logic Structure', 'Executive Framing'],
+    legend: [
+      { label:'S', color:'#a78bfa', desc:'Situation' },
+      { label:'C', color:'#fb923c', desc:'Complication' },
+      { label:'Q', color:'#facc15', desc:'Question' },
+      { label:'A', color:'#4ade80', desc:'Answer' },
+    ],
+    legendNote: '· SCQA Framework (Barbara Minto / The Pyramid Principle)',
+    appliedFW: 'scqa',
+  };
+}
+
+// ── T.C.R.E.I.: Topic · Context · Request · Evidence · Impact ────────
+function buildTCREI(raw, sig, it) {
+  const prof = applyWordMap(raw);
+  let T, C, R, E, I;
+
+  if (sig.isBlocked) {
+    T = "Approval dependency blocking project forward progress.";
+    C = "All internal tasks have been completed as planned. The outstanding item is an external sign-off that has exceeded its expected response window.";
+    R = "I am requesting either an accelerated approval decision or executive support to escalate through the appropriate channel.";
+    E = "The dependency was flagged in the previous status update and has now been outstanding for multiple business days beyond the agreed SLA.";
+    I = "Without resolution by end of this week, the delivery date will be at risk, with downstream implications for all teams dependent on this output.";
+  } else if (sig.isCredit) {
+    T = "Accurate attribution of contributions on a recent key deliverable.";
+    C = "I led the development of the work currently being presented and want to ensure my contribution is properly reflected in how it is attributed.";
+    R = "I am requesting a review of the attribution on the current piece and agreement on a consistent process for recording individual contributions going forward.";
+    E = "I can provide a detailed record of my contributions including drafts, version history, timestamps, and supporting communications.";
+    I = "Accurate attribution supports team integrity, enables fair recognition in performance conversations, and builds trust within the group.";
+  } else if (sig.isMicro) {
+    T = "Proposing a structured communication cadence to replace ad-hoc oversight.";
+    C = "I am fully committed to delivery and to keeping you informed at all meaningful checkpoints. I want to ensure the current check-in pattern enables, rather than limits, effective execution.";
+    R = "I would like to propose a brief, structured weekly update — covering progress, blockers, and next steps — as the primary touchpoint going forward.";
+    E = "Research consistently shows that outcome-focused check-ins improve both autonomy and accountability, while reducing cognitive load on both sides.";
+    I = "A structured cadence will give you full visibility, protect delivery quality, and free up bandwidth for higher-value conversations between us.";
+  } else {
+    T = `${prof.split('.')[0]}.`;
+    C = "This matter has been on my radar and I am raising it proactively, before it has the opportunity to escalate further.";
+    R = "I am requesting a brief, focused conversation to align on expectations and agree on a clear path forward.";
+    E = "I can provide supporting context, documentation, and a proposed resolution framework to help inform a fact-based discussion.";
+    I = "Addressing this now will protect the working relationship, maintain delivery momentum, and prevent ambiguity from compounding over time.";
+  }
+
+  return {
+    type: 'structured',
+    parts: [
+      { label:'TOPIC',    color:'#60a5fa', bg:'rgba(96,165,250,.09)',  bd:'rgba(96,165,250,.35)',  text: T },
+      { label:'CONTEXT',  color:'#a78bfa', bg:'rgba(167,139,250,.09)', bd:'rgba(167,139,250,.35)', text: C },
+      { label:'REQUEST',  color:'#34d399', bg:'rgba(52,211,153,.09)',  bd:'rgba(52,211,153,.35)',  text: R },
+      { label:'EVIDENCE', color:'#facc15', bg:'rgba(250,204,21,.09)',  bd:'rgba(250,204,21,.35)',  text: E },
+      { label:'IMPACT',   color:'#fb923c', bg:'rgba(251,146,60,.09)',  bd:'rgba(251,146,60,.35)',  text: I },
+    ],
+    frameworkTags: ['T.C.R.E.I.', 'Structured Request Model', 'Evidence-Based Communication'],
+    legend: [
+      { label:'T', color:'#60a5fa', desc:'Topic' },
+      { label:'C', color:'#a78bfa', desc:'Context' },
+      { label:'R', color:'#34d399', desc:'Request' },
+      { label:'E', color:'#facc15', desc:'Evidence' },
+      { label:'I', color:'#fb923c', desc:'Impact' },
+    ],
+    legendNote: '· T.C.R.E.I. Framework',
+    appliedFW: 'tcrei',
+  };
+}
+
+// ── Lead with Value (Jeff Su / Manage-Up Principle) ──────────────────
+function buildLeadValue(raw, sig, it) {
+  const prof = applyWordMap(raw);
+  let reply;
+
+  if (sig.isBlocked) {
+    reply = it === 'upward'
+      ? "Given your focus on delivering this project on schedule, I want to surface a dependency risk now rather than when it becomes critical. All internal tasks are complete — we are currently awaiting an external approval that is now overdue. To protect the timeline, I recommend we escalate today and prepare a contingency plan in parallel. I am ready to support both tracks immediately."
+      : "I want to flag a risk to our shared timeline before it becomes a blocker we cannot recover from. All items on our side are complete — the outstanding dependency is an external approval that has stalled. I suggest we align on an escalation approach today and prepare a fallback path to protect the delivery date.";
+  } else if (sig.isCredit) {
+    reply = "To protect the integrity of our team's record and ensure contributions are fairly recognised — for both morale and accurate performance evaluation — I want to raise a question about how a recent deliverable has been attributed. I can walk through the specific contributions involved and propose a straightforward process to prevent similar ambiguity in future work.";
+  } else if (sig.isOverload) {
+    reply = it === 'upward'
+      ? "In the interest of maintaining delivery quality across all active workstreams and avoiding any timeline risk that would affect your planning, I want to be transparent about the current capacity picture. I would welcome a brief prioritisation conversation so we can make a deliberate trade-off decision together rather than have quality silently degrade across the board."
+      : "To protect our collective output quality and avoid any risk of slippage on shared goals, I want to flag a current capacity constraint openly. I have a suggested prioritisation view ready — can we align briefly so we are making a deliberate call rather than absorbing risk quietly?";
+  } else if (sig.isFeedback) {
+    reply = "In the interest of helping you make an informed decision about the path forward, I want to offer some context that I believe is directly relevant to the evaluation. My intent is to contribute constructively to the process — not to challenge the outcome, but to ensure the picture you are working from is as complete as possible.";
+  } else {
+    const target = it === 'upward' ? 'keeping you appropriately informed so you can make a timely decision' : 'maintaining alignment and protecting the outcomes we are both working toward';
+    reply = `In the interest of ${target}, I wanted to raise the following directly: ${prof.charAt(0).toUpperCase() + prof.slice(1)}. I am raising this now so we can address it constructively before it becomes a larger issue that is harder to resolve.`;
+  }
+
+  return {
+    type: 'prose',
+    reply,
+    frameworkTags: ['Lead with Value', 'Stakeholder-First Framing', 'Manage-Up (Jeff Su)'],
+    appliedFW: 'leadvalue',
+  };
+}
+
+// ── Executive Frame (The Futur / Chris Do) ───────────────────────────
+function buildExecFrame(raw, sig, it) {
+  const prof = applyWordMap(raw);
+  let reply;
+
+  if (sig.isBlocked) {
+    reply = "Status: Blocked. Root cause: external approval outstanding beyond SLA. Risk: delivery date at risk by end of week. Options on the table: (1) Escalate to department head — same-day resolution required. (2) Activate contingency scope to maintain partial delivery while awaiting sign-off. Recommendation: Option 1, with Option 2 prepared if no response by close of business. Decision needed today.";
+  } else if (sig.isCredit) {
+    reply = "Issue: Attribution inaccurate on recent deliverable. Impact: professional record affected; performance visibility compromised at a critical review period. Action required: (1) Correct attribution on current piece. (2) Agree a formal contribution-logging process for all future deliverables. Owner: to be confirmed following this conversation. Timeline: before next stakeholder presentation.";
+  } else if (sig.isOverload) {
+    reply = "Situation: Workload above sustainable capacity across active workstreams. Risk: quality and timeline exposure on at least two items. Options: (1) Deprioritise lower-impact items temporarily. (2) Add resource to the critical path. (3) Extend agreed timelines with stakeholder sign-off. Recommendation: 15-minute prioritisation call this week to make a deliberate trade-off. Bring your ranking of the top five items.";
+  } else if (sig.isConflict) {
+    reply = `Item: Unresolved tension impacting team effectiveness. Root cause: ${prof.charAt(0).toUpperCase() + prof.slice(1)}. Risk: continued friction will affect delivery, morale, and stakeholder confidence. Proposed resolution path: structured 30-minute alignment session, facilitated if necessary. Goal: agreed working norms and a clear decision on the outstanding point of conflict. Owner: both parties. Timeline: this week.`;
+  } else {
+    reply = `Item to resolve: ${prof.charAt(0).toUpperCase() + prof.slice(1)}. Impact: affects ${it === 'upward' ? 'delivery, alignment, or stakeholder confidence' : 'team effectiveness and shared outcomes'}. Recommended action: direct conversation to agree resolution path and assign clear ownership. Next step: schedule 20-minute session before end of week.`;
+  }
+
+  return {
+    type: 'prose',
+    reply,
+    frameworkTags: ['Executive Frame', 'Outcomes & Trade-offs', 'The Futur / Chris Do'],
+    appliedFW: 'exec',
+  };
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  AUTO-SELECT FRAMEWORK based on signals
+// ══════════════════════════════════════════════════════════════════════
+function autoSelect(sig) {
+  if (sig.isCredit || sig.isBlame)    return 'abt';
+  if (sig.isIgnored || sig.isConflict)return 'abt';
+  if (sig.isBlocked || sig.isUpdate)  return 'scqa';
+  if (sig.isMicro   || sig.isFeedback)return 'tcrei';
+  if (sig.isOverload)                 return 'leadvalue';
+  return 'tcrei'; // default: structured and professional
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  PICK SUPPORTING PHRASE  (rotates through phrase pool)
+// ══════════════════════════════════════════════════════════════════════
+function pickPhrase(sig) {
+  const pool =
+    sig.isBlocked  ? PHRASES.blocked  :
+    sig.isCredit   ? PHRASES.credit   :
+    sig.isBlame    ? PHRASES.blame    :
+    sig.isIgnored  ? PHRASES.ignored  :
+    sig.isConflict ? PHRASES.conflict :
+    sig.isMicro    ? PHRASES.micro    :
+    sig.isOverload ? PHRASES.overload :
+    sig.isUpdate   ? PHRASES.update   :
+    PHRASES.general;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  PICK WATCHOUT
+// ══════════════════════════════════════════════════════════════════════
+function pickWatchout(sig) {
+  if (sig.isBlocked)  return WATCHOUTS.blocked;
+  if (sig.isCredit)   return WATCHOUTS.credit;
+  if (sig.isBlame)    return WATCHOUTS.blame;
+  if (sig.isIgnored)  return WATCHOUTS.ignored;
+  if (sig.isConflict) return WATCHOUTS.conflict;
+  if (sig.isMicro)    return WATCHOUTS.micro;
+  if (sig.isOverload) return WATCHOUTS.overload;
+  if (sig.isUpdate)   return WATCHOUTS.update;
+  return WATCHOUTS.general;
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  MASTER TRANSFORM FUNCTION
+// ══════════════════════════════════════════════════════════════════════
+function transform(rawText, itChoice, fwChoice) {
+  const sig = detectSignals(rawText);
+  const activeFW = fwChoice === 'auto' ? autoSelect(sig) : fwChoice;
+
+  let result;
+  if      (activeFW === 'abt')       result = buildABT(rawText, sig, itChoice);
+  else if (activeFW === 'scqa')      result = buildSCQA(rawText, sig, itChoice);
+  else if (activeFW === 'tcrei')     result = buildTCREI(rawText, sig, itChoice);
+  else if (activeFW === 'leadvalue') result = buildLeadValue(rawText, sig, itChoice);
+  else if (activeFW === 'exec')      result = buildExecFrame(rawText, sig, itChoice);
+  else                               result = buildTCREI(rawText, sig, itChoice);
+
+  result.watchout        = pickWatchout(sig);
+  result.supportingPhrase = pickPhrase(sig);
+  return result;
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  HTML ESCAPE
+// ══════════════════════════════════════════════════════════════════════
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  RENDER ASSISTANT BUBBLE
+// ══════════════════════════════════════════════════════════════════════
+function renderBubble(msg) {
+  const r = msg.result;
+  if (!r) return '';
+
+  const fwLabel = FW_META[r.appliedFW]?.label || r.appliedFW;
+
+  // Reply block
+  let replyHtml;
+  if (r.type === 'structured') {
+    replyHtml = r.parts.map((p, j) => `
+      <div style="background:${p.bg};border:1px solid ${p.bd};border-radius:8px;padding:11px 14px;
+                  display:flex;gap:12px;align-items:flex-start;margin-top:${j===0?'0':'8px'}">
+        <span style="color:${p.color};font-size:9px;font-weight:800;letter-spacing:.1em;
+                     text-transform:uppercase;background:${p.bg};border:1px solid ${p.bd};
+                     border-radius:4px;padding:3px 7px;flex-shrink:0;margin-top:2px;
+                     white-space:nowrap;box-shadow:0 0 8px ${p.bd}">${p.label}</span>
+        <p style="color:#f0f0f0;font-size:13.5px;line-height:1.75;margin:0">${esc(p.text)}</p>
+      </div>`).join('');
+  } else {
+    replyHtml = r.reply.split('\n').filter(l=>l.trim()).map(l =>
+      `<p style="color:#f0f0f0;font-size:13.5px;line-height:1.8;margin:0 0 6px">${esc(l)}</p>`
+    ).join('');
+  }
+
+  // Legend
+  let legendHtml = '';
+  if (r.legend) {
+    const items = r.legend.map(l =>
+      `<div style="display:flex;align-items:center;gap:5px">
+         <span style="color:${l.color};font-size:9px;font-weight:800;letter-spacing:.08em">${l.label}</span>
+         <span style="color:#444;font-size:9px">${l.desc}</span>
+       </div>`).join('');
+    legendHtml = `<div style="display:flex;gap:10px;margin-top:9px;flex-wrap:wrap">
+      ${items}
+      <span style="color:#333;font-size:9px">${r.legendNote}</span>
+    </div>`;
+  }
+
+  // Tags
+  const tagsHtml = r.frameworkTags.map(t =>
+    `<span style="background:#111;border:1px solid #242424;border-radius:5px;
+                  padding:3px 9px;color:#ccc;font-size:11px">${esc(t)}</span>`
+  ).join('');
+
+  return `
+<div style="background:#090909;border:1px solid #181818;border-radius:2px 11px 11px 11px;padding:20px 22px;width:100%">
+  <!-- Header row -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:6px">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span style="font-size:10px;color:#666;letter-spacing:.12em;text-transform:uppercase">PHRAZO Reframe</span>
+    </div>
+    <span style="font-size:9px;color:#444;letter-spacing:.06em;text-transform:uppercase;
+                 border:1px solid #222;border-radius:4px;padding:2px 8px">${esc(fwLabel)}</span>
+  </div>
+
+  <!-- Strategic Reply -->
+  <div style="margin-bottom:20px">
+    <p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:10px">
+      &#x2709; Strategic Professional Reply
+    </p>
+    <div style="background:#0d0d0d;border:1px solid #242424;border-left:2px solid #fff;
+                border-radius:0 8px 8px 0;padding:14px 16px">
+      ${replyHtml}
+    </div>
+    ${legendHtml}
+  </div>
+
+  <!-- Supporting Language -->
+  ${r.supportingPhrase ? `
+  <div style="margin-bottom:18px;background:#0a0a0a;border:1px solid #1e1e1e;border-radius:8px;padding:12px 14px">
+    <p style="font-size:10px;color:#555;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;font-weight:600">
+      &#x1F4AC; Supporting Language
+    </p>
+    <p style="color:#888;font-size:12.5px;line-height:1.65;margin:0;font-style:italic">
+      "${esc(r.supportingPhrase)}"
+    </p>
+  </div>` : ''}
+
+  <!-- Framework Techniques -->
+  <div style="margin-bottom:18px">
+    <p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:9px">
+      &#x2699; Framework Techniques Used
+    </p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${tagsHtml}</div>
+  </div>
+
+  <!-- Watch-Out -->
+  <div>
+    <p style="font-size:10px;color:#777;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:8px">
+      &#x26A1; Strategic Watch-Out
+    </p>
+    <p style="color:#aaa;font-size:12.5px;line-height:1.65;margin:0">${esc(r.watchout)}</p>
+  </div>
 </div>`;
 }
 
-// RENDER ALL
-function render(){
- const empty=document.getElementById('emptyState');
- const list=document.getElementById('msgList');
- const nc=document.getElementById('newChatBtn');
- const loadEl=document.getElementById('loadingEl');
- empty.style.display=msgs.length?'none':'';
- nc.style.display=msgs.length?'flex':'none';
- loadEl.style.display=busy?'flex':'none';
- list.innerHTML=msgs.map((m,i)=>{
-  if(m.type==='user'){
-   const tags=[m.meta?.it,m.meta?.fw].filter(Boolean).map(t=>`<span style="background:#111;border:1px solid #1e1e1e;border-radius:4px;padding:2px 7px;color:#999;font-size:10px;letter-spacing:.03em">${esc(t)}</span>`).join('');
-   return`<div class="fade-up" style="margin-bottom:22px;display:flex;flex-direction:column;align-items:flex-end"><div style="display:flex;gap:5px;justify-content:flex-end;margin-bottom:5px;flex-wrap:wrap">${tags}</div><div style="background:#121212;border:1px solid #242424;border-radius:11px 11px 2px 11px;padding:12px 15px;max-width:78%;color:#e0e0e0;font-size:13.5px;line-height:1.65">${esc(m.text)}</div></div>`;
+// ══════════════════════════════════════════════════════════════════════
+//  RENDER ALL MESSAGES
+// ══════════════════════════════════════════════════════════════════════
+function render() {
+  const empty = document.getElementById('emptyState');
+  const list  = document.getElementById('msgList');
+  const nc    = document.getElementById('newChatBtn');
+  empty.style.display = msgs.length ? 'none' : '';
+  nc.style.display    = msgs.length ? 'flex' : 'none';
+
+  list.innerHTML = msgs.map(m => {
+    if (m.type === 'user') {
+      const tags = [m.meta?.it, m.meta?.fw].filter(Boolean).map(t =>
+        `<span style="background:#111;border:1px solid #1e1e1e;border-radius:4px;
+                      padding:2px 7px;color:#999;font-size:10px;letter-spacing:.03em">${esc(t)}</span>`
+      ).join('');
+      return `
+        <div class="fade-up" style="margin-bottom:22px;display:flex;flex-direction:column;align-items:flex-end">
+          <div style="display:flex;gap:5px;justify-content:flex-end;margin-bottom:5px;flex-wrap:wrap">${tags}</div>
+          <div style="background:#121212;border:1px solid #242424;border-radius:11px 11px 2px 11px;
+                      padding:12px 15px;max-width:78%;color:#e0e0e0;font-size:13.5px;line-height:1.65">
+            ${esc(m.text)}
+          </div>
+        </div>`;
+    }
+    return `<div class="fade-up" style="margin-bottom:22px;display:flex;flex-direction:column;align-items:flex-start">
+      ${renderBubble(m)}
+    </div>`;
+  }).join('');
+
+  document.getElementById('btm').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  SEND / RESET
+// ══════════════════════════════════════════════════════════════════════
+function doSend(overText, overIT) {
+  const ta   = document.getElementById('msgIn');
+  const text = (overText ?? ta.value).trim();
+  if (!text) return;
+
+  const activeIT = overIT ?? itType;
+  if (overIT) setIT(overIT);
+
+  const meta = {
+    it: IT[activeIT]?.label,
+    fw: fw === 'auto' ? 'Auto' : FW_META[fw]?.label,
+  };
+  msgs.push({ type: 'user', text, meta });
+  ta.value = '';
+  ta.style.height = 'auto';
+
+  // Show progress bar
+  const loadEl = document.getElementById('loadingEl');
+  const pb     = document.getElementById('progressBar');
+  loadEl.style.display = 'flex';
+  pb.style.animation = 'none';
+  pb.offsetHeight; // reflow to restart animation
+  pb.style.animation = 'processing .85s ease forwards';
+  render();
+
+  // Short delay for natural UX feel
+  setTimeout(() => {
+    const result = transform(text, activeIT, fw);
+    msgs.push({ type: 'assistant', result });
+    loadEl.style.display = 'none';
+    render();
+    syncSend();
+  }, 680);
+}
+
+function exampleSend(idx) { doSend(EXAMPLES[idx].text, EXAMPLES[idx].it); }
+function resetChat() {
+  msgs = [];
+  document.getElementById('msgIn').value = '';
+  render();
+  syncSend();
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  INPUT HANDLERS
+// ══════════════════════════════════════════════════════════════════════
+function onTyping(ta) {
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 160) + 'px';
+  syncSend();
+}
+function onKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+}
+function syncSend() {
+  const ta   = document.getElementById('msgIn');
+  const btn  = document.getElementById('sendBtn');
+  const icon = document.getElementById('sendIcon');
+  const on   = ta.value.trim().length > 0;
+  btn.disabled          = !on;
+  btn.style.background  = on ? '#fff' : '#1e1e1e';
+  btn.style.borderColor = on ? '#fff' : '#404040';
+  btn.style.cursor      = on ? 'pointer' : 'not-allowed';
+  btn.style.boxShadow   = on ? '0 0 10px rgba(255,255,255,.18)' : 'none';
+  btn.className         = on ? 'send-active' : '';
+  icon.setAttribute('stroke', on ? '#000' : '#666');
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  TYPEWRITER
+// ══════════════════════════════════════════════════════════════════════
+const HEADS = [
+  { t:"Say it. We'll fix it.",     c:'#60a5fa', i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+  { t:"Think it. We'll frame it.", c:'#a78bfa', i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' },
+  { t:"Feel it. We'll refine it.", c:'#34d399', i:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M15 9h0"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg>' },
+];
+let twIdx = 0, twStr = '', twPhase = 'type';
+const twEl = document.getElementById('twTxt'), twIconEl = document.getElementById('twIcon');
+function syncIcon() { const h = HEADS[twIdx]; twIconEl.style.color = h.c; twIconEl.innerHTML = h.i; }
+syncIcon();
+function tick() {
+  const full = HEADS[twIdx].t;
+  if (twPhase === 'type') {
+    if (twStr.length < full.length) { twStr = full.slice(0, twStr.length + 1); twEl.textContent = twStr; setTimeout(tick, 60); }
+    else setTimeout(() => { twPhase = 'hold'; tick(); }, 1800);
+  } else if (twPhase === 'hold') {
+    setTimeout(() => { twPhase = 'del'; tick(); }, 400);
+  } else {
+    if (twStr.length > 0) { twStr = twStr.slice(0, -1); twEl.textContent = twStr; setTimeout(tick, 35); }
+    else { twIdx = (twIdx + 1) % HEADS.length; twPhase = 'type'; syncIcon(); setTimeout(tick, 60); }
   }
-  return`<div class="fade-up" style="margin-bottom:22px;display:flex;flex-direction:column;align-items:flex-start">${renderBubble(m,i)}</div>`;
- }).join('');
- document.getElementById('btm').scrollIntoView({behavior:'smooth'});
 }
+tick();
 
-// API
-async function callAPI(hist,it){
- const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildPrompt(it||itType,fw),messages:hist})});
- const d=await r.json();
- return d.content?.map(b=>b.text||'').join('\n')||'Something went wrong.';
-}
-
-// SEND
-async function doSend(overText,overIT){
- const ta=document.getElementById('msgIn');
- const text=(overText??ta.value).trim();
- if(!text||busy) return;
- const activeIT=overIT??itType;
- if(overIT) setIT(overIT);
- const uMsg={role:'user',content:text};
- const newHist=[...history,uMsg];
- const meta={it:IT[activeIT]?.label,fw:fw==='auto'?'Auto':FW[fw]?.label};
- msgs.push({type:'user',text,meta});
- ta.value='';ta.style.height='auto';
- setBusy(true);history=newHist;render();
- try{
-  const raw=await callAPI(newHist,activeIT);
-  const parsed=parseResp(raw);
-  msgs.push({type:'assistant',parsed,raw});
-  history=[...newHist,{role:'assistant',content:raw}];
- }catch{msgs.push({type:'assistant',parsed:{type:'raw',txt:'Connection error. Please try again.'},raw:''});}
- finally{setBusy(false);render();syncSend();}
-}
-function exampleSend(){doSend("My manager asked for a progress update but the other department still hasn't given approval. I'm stuck.",'upward');}
-
-// RELOAD
-async function doReload(idx){
- if(reloadIdx!==null)return;
- reloadIdx=idx;render();
- const hist=[];
- for(let i=0;i<msgs.length;i++){
-  if(msgs[i].type==='user') hist.push({role:'user',content:msgs[i].text});
-  else{if(i===idx)break;hist.push({role:'assistant',content:msgs[i].raw||''});}
- }
- hist.push({role:'user',content:'Please generate a different version of the professional reply — vary the angle, tone, or framing while keeping it strategic and career-safe.'});
- try{const raw=await callAPI(hist);const parsed=parseResp(raw);msgs[idx]={...msgs[idx],parsed,raw};}
- catch{}finally{reloadIdx=null;render();}
-}
-
-// BUSY / RESET
-function setBusy(v){busy=v;syncSend();}
-function resetChat(){msgs=[];history=[];document.getElementById('msgIn').value='';render();syncSend();}
-
-// INPUT
-function onTyping(ta){ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,160)+'px';syncSend();}
-function onKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doSend();}}
-function syncSend(){
- const ta=document.getElementById('msgIn');
- const btn=document.getElementById('sendBtn');
- const icon=document.getElementById('sendIcon');
- const on=ta.value.trim()&&!busy;
- btn.disabled=!on;btn.style.background=on?'#fff':'#1e1e1e';btn.style.borderColor=on?'#fff':'#404040';
- btn.style.cursor=on?'pointer':'not-allowed';btn.style.boxShadow=on?'0 0 10px rgba(255,255,255,.18)':'none';
- btn.className=on?'send-active':'';
- icon.setAttribute('stroke',on?'#000':'#666');
-}
-
-// IT BUTTONS
-const IT_SVG={
- upward:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>',
- peer:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
- downward:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
- crossfunc:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>',
+// ══════════════════════════════════════════════════════════════════════
+//  IT / FW CONTROLS
+// ══════════════════════════════════════════════════════════════════════
+const IT_SVG = {
+  upward:    '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>',
+  peer:      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  downward:  '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+  crossfunc: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>',
 };
-function setIT(id){
- itType=id;
- ['upward','peer','downward','crossfunc'].forEach(k=>{
-  const b=document.getElementById('it-'+k);if(!b)return;
-  const on=k===id;
-  b.style.background=on?'#fff':'#0e0e0e';b.style.color=on?'#000':'#aaa';
-  b.style.borderColor=on?'#fff':'#222';b.style.fontWeight=on?'700':'400';
- });
- const lbl=document.getElementById('mobITLabel');
- if(lbl) lbl.innerHTML=IT_SVG[id]+(IT[id]?.label||'');
+function setIT(id) {
+  itType = id;
+  ['upward','peer','downward','crossfunc'].forEach(k => {
+    const b = document.getElementById('it-' + k); if (!b) return;
+    const on = k === id;
+    b.style.background  = on ? '#fff' : '#0e0e0e';
+    b.style.color       = on ? '#000' : '#aaa';
+    b.style.borderColor = on ? '#fff' : '#222';
+    b.style.fontWeight  = on ? '700' : '400';
+  });
+  const lbl = document.getElementById('mobITLabel');
+  if (lbl) lbl.innerHTML = IT_SVG[id] + (IT[id]?.label || '');
 }
 setIT('upward');
-
-// MOB IT DROPDOWN
-function toggleMobIT(){mobITOpen=!mobITOpen;const m=document.getElementById('mobITMenu');m.style.display=mobITOpen?'block':'none';document.getElementById('mobITChev').style.transform=mobITOpen?'rotate(180deg)':'rotate(0)';}
-function closeMobIT(){mobITOpen=false;document.getElementById('mobITMenu').style.display='none';document.getElementById('mobITChev').style.transform='rotate(0)';}
-
-// FW DROPDOWN
-function toggleFW(){fwOpen=!fwOpen;document.getElementById('fwMenu').style.display=fwOpen?'block':'none';document.getElementById('fwChev').style.transform=fwOpen?'rotate(180deg)':'rotate(0)';}
-function setFW(id,label){
- fw=id;document.getElementById('fwLabel').textContent=label;
- ['auto','abt','scqa','leadvalue','exec'].forEach(k=>{
-  const row=document.getElementById('fwo-'+k);if(!row)return;
-  const ck=row.querySelector('.fwck');const p=row.querySelector('p');const on=k===id;
-  row.style.background=on?'#161616':'transparent';
-  if(p){p.style.color=on?'#fff':'#ccc';p.style.fontWeight=on?'700':'500';}
-  if(ck)ck.style.display=on?'block':'none';
- });
- fwOpen=false;document.getElementById('fwMenu').style.display='none';document.getElementById('fwChev').style.transform='rotate(0)';
+function toggleMobIT() { mobITOpen = !mobITOpen; document.getElementById('mobITMenu').style.display = mobITOpen ? 'block' : 'none'; document.getElementById('mobITChev').style.transform = mobITOpen ? 'rotate(180deg)' : 'rotate(0)'; }
+function closeMobIT()  { mobITOpen = false; document.getElementById('mobITMenu').style.display = 'none'; document.getElementById('mobITChev').style.transform = 'rotate(0)'; }
+function toggleFW() { fwOpen = !fwOpen; document.getElementById('fwMenu').style.display = fwOpen ? 'block' : 'none'; document.getElementById('fwChev').style.transform = fwOpen ? 'rotate(180deg)' : 'rotate(0)'; }
+function setFW(id, label) {
+  fw = id; document.getElementById('fwLabel').textContent = label;
+  ['auto','abt','scqa','tcrei','leadvalue','exec'].forEach(k => {
+    const row = document.getElementById('fwo-' + k); if (!row) return;
+    const ck = row.querySelector('.fwck'); const p = row.querySelector('p'); const on = k === id;
+    row.style.background = on ? '#161616' : 'transparent';
+    if (p)  { p.style.color = on ? '#fff' : '#ccc'; p.style.fontWeight = on ? '700' : '500'; }
+    if (ck) ck.style.display = on ? 'block' : 'none';
+  });
+  fwOpen = false; document.getElementById('fwMenu').style.display = 'none'; document.getElementById('fwChev').style.transform = 'rotate(0)';
 }
-
-// CLOSE DROPDOWNS ON OUTSIDE CLICK
-document.addEventListener('click',e=>{
- if(!document.getElementById('fwWrap').contains(e.target)){fwOpen=false;const m=document.getElementById('fwMenu');if(m)m.style.display='none';document.getElementById('fwChev').style.transform='rotate(0)';}
- if(!document.getElementById('itWrap').contains(e.target)) closeMobIT();
+document.addEventListener('click', e => {
+  if (!document.getElementById('fwWrap').contains(e.target)) { fwOpen = false; const m = document.getElementById('fwMenu'); if(m) m.style.display='none'; document.getElementById('fwChev').style.transform='rotate(0)'; }
+  if (!document.getElementById('itWrap').contains(e.target)) closeMobIT();
 });
 
-// MODALS
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-function openFeedback(){
- document.getElementById('fbNote').value='';
- document.getElementById('fbForm').style.display='block';
- document.getElementById('fbOk').style.display='none';
- fbStars=0;renderStars();
- document.querySelectorAll('.fb-tab').forEach((b,i)=>{b.classList.toggle('sel',i===0);});
- syncFbBtn();openModal('fbModal');
+// ══════════════════════════════════════════════════════════════════════
+//  MODALS
+// ══════════════════════════════════════════════════════════════════════
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function openFeedback() {
+  document.getElementById('fbNote').value = '';
+  document.getElementById('fbForm').style.display = 'block';
+  document.getElementById('fbOk').style.display   = 'none';
+  fbStars = 0; renderStars();
+  document.querySelectorAll('.fb-tab').forEach((b, i) => b.classList.toggle('sel', i === 0));
+  syncFbBtn(); openModal('fbModal');
+}
+function pickFbTab(btn) { document.querySelectorAll('.fb-tab').forEach(b => b.classList.remove('sel')); btn.classList.add('sel'); }
+function setStars(n)    { fbStars = n; renderStars(); }
+function hoverStars(n)  { document.querySelectorAll('.star-btn').forEach((s, i) => s.classList.toggle('lit', i < n)); }
+function leaveStars()   { renderStars(); }
+function renderStars()  { document.querySelectorAll('.star-btn').forEach((s, i) => s.classList.toggle('lit', i < fbStars)); }
+function syncFbBtn() {
+  const has = document.getElementById('fbNote').value.trim().length > 0;
+  const btn = document.getElementById('fbSendBtn');
+  btn.disabled          = !has;
+  btn.style.background  = has ? '#fff' : '#1a1a1a';
+  btn.style.color       = has ? '#000' : '#555';
+  btn.style.borderColor = has ? '#fff' : '#2a2a2a';
+  btn.style.cursor      = has ? 'pointer' : 'not-allowed';
+  btn.style.boxShadow   = has ? '0 0 12px rgba(255,255,255,.1)' : 'none';
+}
+document.getElementById('fbNote').addEventListener('input', syncFbBtn);
+function submitFb() {
+  if (!document.getElementById('fbNote').value.trim()) return;
+  document.getElementById('fbForm').style.display = 'none';
+  document.getElementById('fbOk').style.display   = 'block';
 }
 
-// FEEDBACK
-function pickFbTab(btn){document.querySelectorAll('.fb-tab').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');}
-function setStars(n){fbStars=n;renderStars();}
-function hoverStars(n){document.querySelectorAll('.star-btn').forEach((s,i)=>s.classList.toggle('lit',i<n));}
-function leaveStars(){renderStars();}
-function renderStars(){document.querySelectorAll('.star-btn').forEach((s,i)=>s.classList.toggle('lit',i<fbStars));}
-function syncFbBtn(){
- const has=document.getElementById('fbNote').value.trim().length>0;
- const btn=document.getElementById('fbSendBtn');
- btn.disabled=!has;btn.style.background=has?'#fff':'#1a1a1a';btn.style.color=has?'#000':'#555';
- btn.style.borderColor=has?'#fff':'#2a2a2a';btn.style.cursor=has?'pointer':'not-allowed';
- btn.style.boxShadow=has?'0 0 12px rgba(255,255,255,.1)':'none';
-}
-document.getElementById('fbNote').addEventListener('input',syncFbBtn);
-function submitFb(){
- if(!document.getElementById('fbNote').value.trim())return;
- document.getElementById('fbForm').style.display='none';
- document.getElementById('fbOk').style.display='block';
-}
 </script>
 </body>
 </html>
-
