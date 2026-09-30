@@ -107,6 +107,17 @@ a{text-decoration:none}
 .phrazo-leg-right {
   transform-box: fill-box;
   transform-origin: 0 0;
+
+  /* Keep legs attached to hip when paused */
+  transform: translate(17px, 38px);
+}
+   /* Natural resting stance when paused */
+#phrazoBotCharacter:not(.walking) .phrazo-leg-left {
+  transform: translate(17px, 38px) rotate(7deg);
+}
+
+#phrazoBotCharacter:not(.walking) .phrazo-leg-right {
+  transform: translate(17px, 38px) rotate(-7deg);
 }
 
 #phrazoBotCharacter.walking .phrazo-leg-left {
